@@ -33,5 +33,5 @@ if __name__ == '__main__':
     else:
         print("Most likely there is a redundant dependency on your list, or a base dependency is missing")
     
-    graph = construct_graph(dependencies)
+    graph = construct_graph("test.json")
     print_graph(graph.values())

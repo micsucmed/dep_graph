@@ -42,16 +42,20 @@ def read_dep_file(filename: str) -> Dict[str, List[str]]:
     
     return dep_file
 
-def construct_graph(dependencies: Dict[str, List[str]]) -> Dict[str, Node]:
+def construct_graph(filename: str) -> Dict[str, Node]:
     """
-    Cunstructs the graph of dependancies
+    Cunstructs the graph of dependancies based on the json file with the
+    package dependencies
 
     Parameters
     __________
-        dependencies: Dict[str, List[str]]
-            A dictionary that represents the list of packages and a list of
-            their dependencies
+        filename: str
+            path to the file containing the package list and their 
+            dependencies
     """
+    with open(filename, 'r') as file:
+        dependencies = json.load(file)
+
     graph = {}
     for pkg, children in dependencies.items():
         if pkg not in graph:
